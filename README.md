@@ -121,7 +121,6 @@ agrisync/
 
 **Placide Shema**  
 BSc. Software Engineering, African Leadership University  
-Capstone Project – 2025
 
 ---
 
