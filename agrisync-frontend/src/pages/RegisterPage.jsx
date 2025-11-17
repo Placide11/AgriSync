@@ -77,12 +77,12 @@ const RegisterPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-gray-700 text-sm font-semibold mb-1.5" htmlFor="first_name">First Name</label>
-              <input className={`form-input ${errors.first_name ? 'border-red-500' : ''}`} id="first_name" name="first_name" type="text" placeholder="John" value={formData.first_name} onChange={handleChange} />
+              <input className={`form-input ${errors.first_name ? 'border-red-500' : ''}`} id="first_name" name="first_name" type="text" placeholder="John" value={formData.first_name} onChange={handleChange} required/>
               {errors.first_name && <p className="text-xs text-red-500 mt-1">{errors.first_name}</p>}
             </div>
             <div>
               <label className="block text-gray-700 text-sm font-semibold mb-1.5" htmlFor="last_name">Last Name</label>
-              <input className={`form-input ${errors.last_name ? 'border-red-500' : ''}`} id="last_name" name="last_name" type="text" placeholder="Doe" value={formData.last_name} onChange={handleChange} />
+              <input className={`form-input ${errors.last_name ? 'border-red-500' : ''}`} id="last_name" name="last_name" type="text" placeholder="Doe" value={formData.last_name} onChange={handleChange} required />
               {errors.last_name && <p className="text-xs text-red-500 mt-1">{errors.last_name}</p>}
             </div>
           </div>

@@ -19,3 +19,11 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ['id', 'title', 'description', 'assigned_to', 'assigned_to_id', 'due_date', 'status', 'created_at']
+
+class TaskStatusUpdateSerializer(serializers.ModelSerializer):
+    """
+    A serializer specifically for allowing a user to update only the status of a task.
+    """
+    class Meta:
+        model = Task
+        fields = ['status'] 

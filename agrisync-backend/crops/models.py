@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from inventory.models import InventoryItem
 
 class Field(models.Model):
     name = models.CharField(max_length=100)
@@ -23,14 +24,30 @@ class Crop(models.Model):
         return f"{self.name} in {self.field.name}"
 
 class InputUsed(models.Model):
-    crop = models.ForeignKey(Crop, on_delete=models.CASCADE, related_name="inputs")
-    name = models.CharField(max_length=100)
-    quantity = models.CharField(max_length=100)
+    crop = models.ForeignKey(
+        Crop,
+        on_delete=models.CASCADE,
+        related_name="inputs_used"
+    )
+    # 👇 Link to the main inventory
+    inventory_item = models.ForeignKey(
+        InventoryItem,
+        on_delete=models.SET_NULL, # Don't delete record if inventory item is deleted
+        null=True
+    )
+    amount_used = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text="The amount of the inventory item used for this crop"
+    )
     date_used = models.DateField()
-    
+
+
     class Meta:
+        ordering = ['-date_used']
         verbose_name = "Input Used"
         verbose_name_plural = "Inputs Used"
 
     def __str__(self):
-        return f"{self.name} for {self.crop.name}"
+        return f"{self.amount_used} of {self.inventory_item.name} for {self.crop.name}"
+
